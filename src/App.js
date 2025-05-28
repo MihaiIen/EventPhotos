@@ -7,6 +7,11 @@ function App() {
       <img src="/titlu.png" alt="Gazeta Căsătoriilor" className="titlu" />
       <div className="linie"></div>
       <img src="/usti.png" alt="Usti" className="usti" />
+
+      <p className="mesaj">
+        Nu fiți sfioși, dragilor! Zâmbiți, distrați-vă… și promit că o să iasă și pozele bune!
+      </p>
+
       <div className="butoane">
         <img src="/incarca-poza.png" alt="Încarcă o poză" className="buton" />
         <img src="/vizualizeaza-galeria.png" alt="Vizualizează galeria" className="buton" />
