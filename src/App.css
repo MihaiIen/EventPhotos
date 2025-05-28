@@ -134,3 +134,17 @@ body, html {
   text-decoration: none;
   font-weight: bold;
 }
+.card {
+  max-width: 400px;
+  margin: 20px auto;
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}

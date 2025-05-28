@@ -1,57 +1,61 @@
 import React, { useEffect, useState } from "react";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import { Link } from "react-router-dom";
+// import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+// import { app } from "../firebase"; // dacă vrei să folosești Firebase
+import "../GaleriePage.css";
 
-function GaleriePage() {
-  const [files, setFiles] = useState([]);
-  const [preview, setPreview] = useState(null);
+const GaleriePage = () => {
+  const [mediaList, setMediaList] = useState([]);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      const storage = getStorage();
-      const listRef = ref(storage, "uploads/");
-      const res = await listAll(listRef);
+    // 🔄 Test cu imagini locale din public/test
+    const testImages = [
+      "/test/foto1.jpg",
+      "/test/foto2.jpg",
+      "/test/foto3.jpg"
+    ];
+    setMediaList(testImages);
+
+    // 🔄 Dacă vrei să folosești Firebase, decomentează mai jos:
+    /*
+    const fetchMedia = async () => {
+      const storage = getStorage(app);
+      const listRef = ref(storage, "galerie/");
+      const result = await listAll(listRef);
       const urls = await Promise.all(
-        res.items.map((item) => getDownloadURL(item))
+        result.items.map((itemRef) => getDownloadURL(itemRef))
       );
-      setFiles(urls);
+      setMediaList(urls);
     };
 
-    fetchImages();
+    fetchMedia();
+    */
   }, []);
 
   return (
     <div className="galerie-container">
-      <div className="top-bar">
-        <Link to="/">← Înapoi</Link>
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <img
+          src="/titlu.png"
+          alt="Gazeta Căsătoriilor"
+          style={{ maxWidth: "80%", height: "auto" }}
+        />
       </div>
+
+      <a href="/" className="back-button">Înapoi</a>
 
       <div className="grid">
-        {files.map((url, index) => {
-          const isVideo = url.includes(".mp4") || url.includes(".webm");
-          return (
-            <div key={index} className="grid-item" onClick={() => setPreview(url)}>
-              {isVideo ? (
-                <video src={url} muted width="100%" />
-              ) : (
-                <img src={url} alt={`media-${index}`} />
-              )}
-            </div>
-          );
-        })}
+        {mediaList.map((url, index) => (
+          <div key={index} className="grid-item">
+            {url.includes(".mp4") ? (
+              <video src={url} controls />
+            ) : (
+              <img src={url} alt={`Media ${index}`} />
+            )}
+          </div>
+        ))}
       </div>
-
-      {preview && (
-        <div className="overlay" onClick={() => setPreview(null)}>
-          {preview.includes(".mp4") || preview.includes(".webm") ? (
-            <video src={preview} controls autoPlay />
-          ) : (
-            <img src={preview} alt="preview" />
-          )}
-        </div>
-      )}
     </div>
   );
-}
+};
 
 export default GaleriePage;

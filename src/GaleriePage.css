@@ -1,0 +1,31 @@
+.galerie-container {
+  padding: 1rem;
+  text-align: center;
+}
+
+.back-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  background: black;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 3rem;
+}
+
+.grid-item img,
+.grid-item video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
