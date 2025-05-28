@@ -24,20 +24,6 @@ body, html {
   margin-bottom: 5px;
 }
 
-.subtitlu {
-  font-size: 0.9rem;       /* mult mai mic */
-  font-style: italic;
-  color: #444;
-  margin: 0;               /* eliminăm spațiile sus-jos */
-}
-
-.linie {
-  width: 80%;
-  height: 1px;             /* mai subțire */
-  background-color: #000;
-  margin: 8px 0 20px 0;    /* spațiu mic între subtitlu și linie */
-}
-
 .usti {
   width: 300px;
   max-width: 90%;
