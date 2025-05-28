@@ -1,22 +1,15 @@
-import React from "react";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UploadPage from "./pages/UploadPage";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
-    <div className="container">
-      <img src="/titlu.png" alt="Gazeta Căsătoriilor" className="titlu" />
-
-      <img src="/usti.png" alt="Usti" className="usti" />
-
-      <p className="mesaj">
-        Nu fiți sfioși, dragilor! Zâmbiți, distrați-vă… și promit că o să iasă și pozele bune!
-      </p>
-
-      <div className="butoane">
-        <img src="/incarca-poza.png" alt="Încarcă o poză" className="buton" />
-        <img src="/vizualizeaza-galeria.png" alt="Vizualizează galeria" className="buton" />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/upload" element={<UploadPage />} />
+      </Routes>
+    </Router>
   );
 }
 
