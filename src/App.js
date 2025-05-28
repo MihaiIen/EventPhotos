@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App;
+import GaleriePage from "./pages/GaleriePage";
+
+// Adaugă în <Routes>:
+<Route path="/galerie" element={<GaleriePage />} />
