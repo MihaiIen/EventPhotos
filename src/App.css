@@ -17,9 +17,17 @@ body, html {
 }
 
 .titlu {
-  max-width: 90%;
+  max-width: 95%;
+  width: 600px; /* mai mare decât înainte */
   height: auto;
   margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.subtitlu {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #444;
   margin-bottom: 10px;
 }
 

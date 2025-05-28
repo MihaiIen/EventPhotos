@@ -5,7 +5,13 @@ function App() {
   return (
     <div className="container">
       <img src="/titlu.png" alt="Gazeta Căsătoriilor" className="titlu" />
+
+      <p className="subtitlu">
+        Bine ați venit în cea mai frumoasă poveste spusă în imagini!
+      </p>
+
       <div className="linie"></div>
+
       <img src="/usti.png" alt="Usti" className="usti" />
 
       <p className="mesaj">
