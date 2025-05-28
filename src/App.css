@@ -18,24 +18,24 @@ body, html {
 
 .titlu {
   max-width: 95%;
-  width: 600px; /* mai mare decât înainte */
+  width: 600px;
   height: auto;
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .subtitlu {
-  font-size: 1.4rem;
+  font-size: 0.9rem;       /* mult mai mic */
   font-style: italic;
   color: #444;
-  margin-bottom: 10px;
+  margin: 0;               /* eliminăm spațiile sus-jos */
 }
 
 .linie {
   width: 80%;
-  height: 2px;
+  height: 1px;             /* mai subțire */
   background-color: #000;
-  margin-bottom: 20px;
+  margin: 8px 0 20px 0;    /* spațiu mic între subtitlu și linie */
 }
 
 .usti {
