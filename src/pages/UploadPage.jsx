@@ -1,57 +1,103 @@
 import React, { useState } from "react";
-import { storage, db } from "../firebase";
 import { ref, uploadBytes } from "firebase/storage";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { storage, db } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 function UploadPage() {
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [messageSent, setMessageSent] = useState(false);
+  const [section, setSection] = useState(null); // 'galerie' sau 'mesaj'
   const [file, setFile] = useState(null);
-  const [message, setMessage] = useState("");
+  const [nume, setNume] = useState("");
+  const [mesaj, setMesaj] = useState("");
+  const [confirmare, setConfirmare] = useState("");
 
-  const handleUpload = async () => {
+  const handleUploadGalerie = async () => {
     if (!file) return;
-    const storageRef = ref(storage, `uploads/${uuid()}-${file.name}`);
-    await uploadBytes(storageRef, file);
-    setUploadSuccess(true);
-    setTimeout(() => setUploadSuccess(false), 3000);
+    const path = `galerie/${uuid()}-${file.name}`;
+    const fileRef = ref(storage, path);
+    await uploadBytes(fileRef, file);
+    await addDoc(collection(db, "galerie"), {
+      path,
+      nume,
+      timestamp: Timestamp.now(),
+    });
+    resetState();
+    setConfirmare("Poza a fost adăugată în galerie!");
   };
 
-  const handleMessageSend = async () => {
-    if (!message) return;
+  const handleMesajMiri = async () => {
+    if (!file || !mesaj) return;
+    const path = `mesaje/${uuid()}-${file.name}`;
+    const fileRef = ref(storage, path);
+    await uploadBytes(fileRef, file);
     await addDoc(collection(db, "mesaje"), {
-      text: message,
-      timestamp: Timestamp.now()
+      path,
+      mesaj,
+      timestamp: Timestamp.now(),
     });
-    setMessage("");
-    setMessageSent(true);
-    setTimeout(() => setMessageSent(false), 3000);
+    resetState();
+    setConfirmare("Mesajul a fost trimis mirilor!");
+  };
+
+  const resetState = () => {
+    setFile(null);
+    setNume("");
+    setMesaj("");
+    setSection(null);
+    setTimeout(() => setConfirmare(""), 3000);
   };
 
   return (
     <div className="container">
       <img src="/titlu.png" alt="Titlu" className="titlu" />
 
-      <input
-        type="file"
-        accept="image/*,video/*"
-        onChange={(e) => setFile(e.target.files[0])}
-      />
-      <button onClick={handleUpload}>Postează în galerie</button>
+      {!section && (
+        <div className="butoane">
+          <img
+            src="/incarca o poza.png"
+            alt="Postează în galerie"
+            className="buton"
+            onClick={() => setSection("galerie")}
+          />
+          <img
+            src="/Mesaj pentru miri.png"
+            alt="Mesaj pentru miri"
+            className="buton"
+            onClick={() => setSection("mesaj")}
+          />
+        </div>
+      )}
 
-      <textarea
-        placeholder="Scrie un mesaj pentru miri"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      ></textarea>
-      <button onClick={handleMessageSend}>Trimite un mesaj mirilor</button>
+      {section === "galerie" && (
+        <div className="form">
+          <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
+          <input
+            type="text"
+            placeholder="Numele tău (opțional)"
+            value={nume}
+            onChange={(e) => setNume(e.target.value)}
+          />
+          <button onClick={handleUploadGalerie}>Trimite în galerie</button>
+        </div>
+      )}
 
-      <Link to="/">Înapoi</Link>
+      {section === "mesaj" && (
+        <div className="form">
+          <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
+          <textarea
+            placeholder="Scrie un mesaj pentru miri"
+            value={mesaj}
+            onChange={(e) => setMesaj(e.target.value)}
+          />
+          <button onClick={handleMesajMiri}>Trimite mesajul</button>
+        </div>
+      )}
 
-      {uploadSuccess && <p style={{ color: "green" }}>Fișier încărcat cu succes!</p>}
-      {messageSent && <p style={{ color: "green" }}>Mesaj trimis cu succes!</p>}
+      {confirmare && <p className="confirmare">{confirmare}</p>}
+
+      <Link to="/" className="back-link">← Înapoi</Link>
     </div>
   );
 }
