@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 
-function App() {
+function MainPage() {
   return (
     <div className="container">
       <img src="/titlu.png" alt="Gazeta Căsătoriilor" className="titlu" />
@@ -20,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
