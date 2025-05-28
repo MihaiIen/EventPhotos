@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <img src="/titlu.png" alt="Gazeta Căsătoriilor" className="titlu" />
+      <img src="/usti.png" alt="Usti" className="usti" />
+      <p className="mesaj">
+        Nu fiți sfioși, dragilor! Zâmbiți, distrați-vă… și promit că o să iasă și pozele bune!<br />
+        <span className="semnatura">— Usti, paznicul veseliei 🐾</span>
+      </p>
+      <div className="butoane">
+        <img src="/incarca-poza.png" alt="Încarcă o poză" className="buton" />
+        <img src="/vizualizeaza-galeria.png" alt="Vizualizează galeria" className="buton" />
+      </div>
     </div>
   );
 }
