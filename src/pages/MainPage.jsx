@@ -39,7 +39,12 @@ function MainPage() {
 
   return (
     <div className="container">
-      <img src="/titlu.png" alt="Gazeta Căsătoriilor" className="titlu" />
+      <img
+  src="/titlu-mare.png"
+  alt="Gazeta Căsătoriilor"
+  className="titlu-mare"
+/>
+
       <img src="/usti.png" alt="Usti" className="usti" />
 
       <p className="mesaj">
