@@ -30,19 +30,24 @@ function MainPage() {
   return (
     <div className="container">
       <img
-        src="/titlu-mare.png"
-        alt="Gazeta Căsătoriilor"
-        className="titlu-mare"
-      />
+  src="/titlu-mare.png"
+  alt="Gazeta Căsătoriilor"
+  className="titlu-mare"
+/>
 
-      <div className="linie-subtila" />
+<img
+  src="/numele-pozei.png"
+  alt="Articol intermediar"
+  className="titlu-mare"
+/>
 
-      <img
-        src="/poza-de-la-miri.png"
-        alt="Articol special"
-        className="titlu-mare"
-      />
+<div className="linie-subtila" />
 
+<img
+  src="/poza-de-la-miri.png"
+  alt="Articol special"
+  className="titlu-mare"
+/>
       <div className="butoane">
         <label htmlFor="upload-file">
           <img
