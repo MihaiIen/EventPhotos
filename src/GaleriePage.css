@@ -82,3 +82,17 @@
   margin: 20px 10px;
   align-self: flex-start;
 }
+.back-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.buton-inapoi {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
