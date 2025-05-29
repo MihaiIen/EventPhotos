@@ -105,6 +105,11 @@ body {
   height: auto;
   cursor: pointer;
   display: block;
+  transition: transform 0.1s ease-in-out;
+}
+
+.buton-vintage:active {
+  transform: scale(0.96);
 }
 
 /* Confirmare */
