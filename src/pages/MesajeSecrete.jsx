@@ -13,6 +13,7 @@ function MesajeSecrete() {
   const navigate = useNavigate();
 
   const handleUpload = async () => {
+  try {
     let path = null;
     if (file) {
       path = `mesaje/${uuid()}-${file.name}`;
@@ -30,7 +31,12 @@ function MesajeSecrete() {
     setFile(null);
     setConfirmare("Mesajul a fost trimis cu succes!");
     setTimeout(() => setConfirmare(""), 3000);
-  };
+  } catch (err) {
+    console.error("Eroare la upload sau salvare mesaj:", err);
+    alert("Eroare la trimiterea mesajului. Verifică consola.");
+  }
+};
+
 
   return (
     <div className="container">
