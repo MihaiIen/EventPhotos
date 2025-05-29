@@ -12,13 +12,16 @@ function MesajeSecrete() {
   const [confirmare, setConfirmare] = useState("");
   const navigate = useNavigate();
 
-  const handleUpload = async () => {
+ const handleUpload = async () => {
   try {
     let path = null;
+
     if (file) {
+      console.log("👉 Upload fișier pornit...");
       path = `mesaje/${uuid()}-${file.name}`;
       const fileRef = ref(storage, path);
       await uploadBytes(fileRef, file);
+      console.log("✅ Upload fișier reușit:", path);
     }
 
     await addDoc(collection(db, "mesaje"), {
@@ -32,8 +35,8 @@ function MesajeSecrete() {
     setConfirmare("Mesajul a fost trimis cu succes!");
     setTimeout(() => setConfirmare(""), 3000);
   } catch (err) {
-    console.error("Eroare la upload sau salvare mesaj:", err);
-    alert("Eroare la trimiterea mesajului. Verifică consola.");
+    console.error("❌ Eroare la upload sau salvare mesaj:", err);
+    alert("Eroare la trimitere. Verifică consola (F12).");
   }
 };
 
