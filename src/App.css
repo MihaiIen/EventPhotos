@@ -197,9 +197,10 @@ body, html {
 
 .usti-text {
   flex: 1;
-  max-width: 250px;
-  font-size: 1rem;
-  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  margin-top: 0;
 }
 
 .butoane {
