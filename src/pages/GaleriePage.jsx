@@ -73,7 +73,7 @@ const GaleriePage = () => {
 />
       </div>
 
-      <a href="/" className="back-button">Înapoi</a>
+      <a href="/" className="buton-inapoi">&#8592; Înapoi</a>
 
       <div className="grid">
         {mediaList.map((url, index) => (
