@@ -54,20 +54,22 @@ body, html {
   margin-left: 2px;
 }
 
+.titlu-articol {
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  margin: 0; /* elimină spațiu jos */
+  padding: 0;
+}
+
 .usti-text {
-  flex: 1;
   font-size: 0.95rem;
   line-height: 1.5;
   font-family: 'Georgia', 'Times New Roman', serif;
-  padding-top: 2px;
+  margin: 0;
+  padding-top: 4px; /* mic spațiu controlat */
 }
 
-.titlu-articol {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  font-family: 'Georgia', serif;
-}
 
 /* Butoane */
 .butoane {
@@ -182,4 +184,10 @@ body, html {
   max-width: 100%;
   border-radius: 6px;
   margin-bottom: 10px;
+}
+.usti-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 0; /* elimină spațiu */
 }
