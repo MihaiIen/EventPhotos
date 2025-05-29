@@ -40,32 +40,33 @@ function MainPage() {
   return (
     <div className="container">
       <img
-  src="/titlu-mare.png"
-  alt="Gazeta Căsătoriilor"
-  className="titlu-mare"
-/>
+        src="/titlu-mare.png"
+        alt="Gazeta Căsătoriilor"
+        className="titlu-mare"
+      />
 
-      <img src="/usti.png" alt="Usti" className="usti" />
-
-      <p className="mesaj">
-        Hei! Sunt Usturoi. Nu vă sfiiți, zâmbiți larg și încărcați cele mai
-        haioase poze! Eu le analizez cu atenție de acasă și dau note la stil!
-      </p>
+      <div className="usti-container">
+        <div className="usti-left">
+          <img src="/usti.png" alt="Usti" className="usti-redactor" />
+          <p className="usti-sub">Usturoi – redactor șef</p>
+        </div>
+        <p className="usti-text">
+          Hei! Sunt Usturoi. Nu vă sfiiți, zâmbiți larg și încărcați cele mai
+          haioase poze! Eu le analizez cu atenție de acasă și dau note la stil!
+        </p>
+      </div>
 
       <div className="butoane">
         <img
           src="/adauga-poza-mare.png"
           alt="Adaugă poză"
           className="buton-vintage"
-          style={{ width: "350px", cursor: "pointer" }}
           onClick={handleDirectUpload}
         />
-
         <img
           src="/vezi-galeria-mare.png"
           alt="Vizualizează galeria"
           className="buton-vintage"
-          style={{ width: "350px", cursor: "pointer" }}
           onClick={() => navigate("/galerie")}
         />
       </div>

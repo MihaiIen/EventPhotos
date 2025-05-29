@@ -167,3 +167,45 @@ body, html {
   margin: 0 auto;
   display: block;
 }
+.usti-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 20px 10px;
+  flex-wrap: wrap;
+}
+
+.usti-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.usti-redactor {
+  width: 120px; /* jumătate din dimensiunea inițială */
+  height: auto;
+}
+
+.usti-sub {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 4px;
+  margin-left: 2px;
+}
+
+.usti-text {
+  flex: 1;
+  max-width: 250px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.butoane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* distanță mai mică între butoane */
+  margin: 20px 0;
+}
