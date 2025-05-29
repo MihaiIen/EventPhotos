@@ -2,8 +2,8 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  text-align: center;
   background-color: #fff;
+  text-align: center;
 }
 
 .container {
@@ -16,95 +16,83 @@ body, html {
   padding: 40px 20px;
 }
 
-.titlu {
-  max-width: 95%;
-  width: 600px;
-  height: auto;
-  margin-top: 20px;
-  margin-bottom: 5px;
+.titlu-mare {
+  width: calc(100% - 20px); /* 10px margini laterale */
+  max-width: 1000px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Usti și text */
+.usti-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 15px;
+  margin: 20px 10px;
+  padding: 0 10px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.usti-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .usti {
-  width: 300px;
-  max-width: 90%;
+  width: 120px; /* redus la jumătate */
   height: auto;
 }
-.mesaj {
-  max-width: 600px;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #333;
-  margin: 0 20px;
+
+.credit-foto {
+  font-size: 0.75rem;
+  margin-top: 4px;
+  font-family: 'Georgia', serif;
+  color: #555;
+  margin-left: 2px;
 }
 
+.usti-text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  padding-top: 2px;
+}
 
+.titlu-articol {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+/* Butoane */
 .butoane {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.buton {
-  max-width: 250px;
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-}
-.galerie-container {
-  padding: 20px;
-  text-align: center;
-}
-
-.top-bar {
-  position: sticky;
-  top: 0;
-  background: white;
-  padding: 10px 0;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.grid-item img,
-.grid-item video {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 999;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-.overlay img,
-.overlay video {
-  max-width: 90%;
-  max-height: 90%;
+.buton-vintage {
+  width: 350px;
+  height: auto;
+  cursor: pointer;
+  display: block;
 }
+
+/* Confirmare */
 .confirmare {
   color: green;
   font-weight: bold;
   margin-top: 20px;
 }
 
+/* Upload form */
 .form {
   display: flex;
   flex-direction: column;
@@ -127,6 +115,51 @@ body, html {
   margin: 0 auto;
 }
 
+/* Galerie */
+.galerie-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.grid-item img,
+.grid-item video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* Preview modal */
+.overlay,
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.overlay img,
+.overlay video,
+.modal img,
+.modal video {
+  max-width: 90%;
+  max-height: 90%;
+}
+
 .back-link {
   margin-top: 30px;
   display: inline-block;
@@ -134,6 +167,8 @@ body, html {
   text-decoration: none;
   font-weight: bold;
 }
+
+/* Carduri */
 .card {
   max-width: 400px;
   margin: 20px auto;
@@ -147,66 +182,4 @@ body, html {
   max-width: 100%;
   border-radius: 6px;
   margin-bottom: 10px;
-}
-.buton-vintage {
-  width: 350px;  /* 1400 / 4 = 350 */
-  height: auto;
-  cursor: pointer;
-  display: block;
-  margin: 20px auto;
-}
-.titlu-mare {
-  width: calc(100% - 20px); /* 10px margini laterale */
-  max-width: 1000px;        /* limitează pe desktop */
-  margin: 0 auto;
-  display: block;
-}
-.titlu-mare {
-  width: calc(100% - 20px); /* 10px margini laterale */
-  max-width: 1000px;        /* limitează pe desktop */
-  margin: 0 auto;
-  display: block;
-}
-.usti-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  margin: 20px 10px;
-  flex-wrap: wrap;
-}
-
-.usti-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.usti-redactor {
-  width: 120px; /* jumătate din dimensiunea inițială */
-  height: auto;
-}
-
-.usti-sub {
-  font-size: 0.8rem;
-  font-style: italic;
-  margin-top: 4px;
-  margin-left: 2px;
-}
-
-.usti-text {
-  flex: 1;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  margin-top: 0;
-}
-
-.butoane {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px; /* distanță mai mică între butoane */
-  margin: 20px 0;
 }
