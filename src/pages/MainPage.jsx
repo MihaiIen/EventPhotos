@@ -23,7 +23,6 @@ function MainPage() {
       timestamp: Timestamp.now(),
     });
 
-    setFile(null);
     setConfirmare("Poza a fost încărcată în galerie!");
     setTimeout(() => setConfirmare(""), 3000);
   };
