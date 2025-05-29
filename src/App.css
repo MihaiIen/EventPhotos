@@ -206,6 +206,15 @@ body, html {
   justify-content: flex-start;
   margin-top: 0; /* elimină spațiu */
 }
+.linie-subtila {
+  border: none;
+  height: 1px;
+  background-color: #999;
+  width: 90%;
+  margin: 10px auto 0 auto;
+  opacity: 0.4;
+}
+
 @media (max-width: 480px) {
   .usti-container {
     flex-direction: row;

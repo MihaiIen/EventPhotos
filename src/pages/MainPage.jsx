@@ -39,33 +39,24 @@ function MainPage() {
 
   return (
     <div className="container">
+      {/* Titlu */}
       <img
         src="/titlu-mare.png"
         alt="Gazeta Căsătoriilor"
         className="titlu-mare"
       />
 
-      <div className="usti-container">
-        <div className="usti-left">
-          <img src="/usti.png" alt="Usti" className="usti-redactor" />
-          <span className="usti-sub">Usturoi – redactor șef</span>
-        </div>
-        <div className="usti-text">
-          <strong className="usti-title">Mesaj de încurajare</strong>{" "}
-          Hei! Sunt Usturoi 🐶. Nu vă sfiiți, zâmbiți larg 😄 și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil ✨! 🎉
-        </div>
-      </div>
-
-      {/* Mini articol cu prima imagine */}
+      {/* Primul articol vizual */}
       <div className="mini-articol">
         <img
           src="/numele-pozei.png"
           alt="Articol special"
           className="titlu-mare"
         />
+        <hr className="linie-subtila" />
       </div>
 
-      {/* Mini articol cu poza de la miri */}
+      {/* Al doilea articol vizual */}
       <div className="mini-articol">
         <img
           src="/poza-de-la-miri.png"
@@ -74,6 +65,7 @@ function MainPage() {
         />
       </div>
 
+      {/* Butoane */}
       <div className="butoane">
         <img
           src="/adauga-poza-mare.png"
@@ -89,6 +81,7 @@ function MainPage() {
         />
       </div>
 
+      {/* Formular upload */}
       {fileInputVisible && (
         <div className="form" style={{ marginTop: "20px" }}>
           <input
@@ -106,6 +99,7 @@ function MainPage() {
         </div>
       )}
 
+      {/* Confirmare */}
       {confirmare && <p className="confirmare">{confirmare}</p>}
     </div>
   );
