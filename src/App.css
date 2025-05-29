@@ -226,4 +226,17 @@ body, html {
     font-size: 0.7rem;
   }
 }
+.mini-articol {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.mini-articol-text {
+  max-width: 800px;
+  margin: 10px auto 0 auto;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  padding: 0 10px;
+}
 

@@ -55,6 +55,18 @@ function MainPage() {
     Hei! Sunt Usturoi 🐶. Nu vă sfiiți, zâmbiți larg 😄 și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil ✨! 🎉
   </div>
 </div>
+{/* Mini articol cu imagine */}
+<div className="mini-articol">
+  <img
+    src="/numele-pozei.png"
+    alt="Articol special"
+    className="titlu-mare"
+  />
+  <p className="mini-articol-text">
+    O poză face cât o mie de cuvinte. Ne bucurăm că sunteți parte din povestea noastră!
+  </p>
+</div>
+
       <div className="butoane">
         <img
           src="/adauga-poza-mare.png"
