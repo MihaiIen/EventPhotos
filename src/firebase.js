@@ -21,3 +21,4 @@ const appCheck = initializeAppCheck(app, {
 
 export const storage = getStorage(app);
 export const db = getFirestore(app);
+export { app };
