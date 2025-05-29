@@ -67,10 +67,10 @@ const GaleriePage = () => {
     <div className="galerie-container">
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <img
-          src="/titlu.png"
-          alt="Gazeta Căsătoriilor"
-          style={{ maxWidth: "80%", height: "auto" }}
-        />
+  src="/titlu-mare.png"
+  alt="Gazeta Căsătoriilor"
+  className="titlu-mare"
+/>
       </div>
 
       <a href="/" className="back-button">Înapoi</a>
