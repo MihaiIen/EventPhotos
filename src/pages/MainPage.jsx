@@ -7,7 +7,7 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 
 function MainPage() {
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
   const [confirmare, setConfirmare] = useState("");
   const navigate = useNavigate();
 
