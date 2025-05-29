@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import { ref, uploadBytes } from "firebase/storage";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { storage, db } from "../firebase";
+import { v4 as uuid } from "uuid";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 
 function MainPage() {
+  const [file, setFile] = useState(null);
+  const [nume, setNume] = useState("");
+  const [confirmare, setConfirmare] = useState("");
+  const fileInputRef = useRef();
   const navigate = useNavigate();
+
+  const handleDirectUpload = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) return;
+
+    const path = `galerie/${uuid()}-${selectedFile.name}`;
+    const fileRef = ref(storage, path);
+    await uploadBytes(fileRef, selectedFile);
+    await addDoc(collection(db, "galerie"), {
+      path,
+      nume,
+      timestamp: Timestamp.now(),
+    });
+
+    setConfirmare("Poza a fost încărcată în galerie!");
+    setTimeout(() => setConfirmare(""), 3000);
+  };
 
   return (
     <div className="container">
@@ -16,11 +45,12 @@ function MainPage() {
 
       <div className="butoane">
         <img
-          src="/incarca-poza.png"
-          alt="Încarcă o poză"
-          className="buton"
-          onClick={() => navigate("/upload")}
+          src="/adauga-poza-mare.png"
+          alt="Adaugă poză"
+          className="buton-vintage"
+          onClick={handleDirectUpload}
         />
+
         <img
           src="/vizualizeaza-galeria.png"
           alt="Vizualizează galeria"
@@ -28,6 +58,16 @@ function MainPage() {
           onClick={() => navigate("/galerie")}
         />
       </div>
+
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+      />
+
+      {confirmare && <p className="confirmare">{confirmare}</p>}
     </div>
   );
 }

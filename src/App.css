@@ -148,3 +148,10 @@ body, html {
   border-radius: 6px;
   margin-bottom: 10px;
 }
+.buton-vintage {
+  width: 350px;  /* 1400 / 4 = 350 */
+  height: auto;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
