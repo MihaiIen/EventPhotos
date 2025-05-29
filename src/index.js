@@ -13,5 +13,6 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+import "./firebase-appcheck"; // 👈 asigură că App Check se inițializează o singură dată
 
 reportWebVitals();
