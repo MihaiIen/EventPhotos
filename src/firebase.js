@@ -7,15 +7,14 @@ const firebaseConfig = {
    apiKey: "AIzaSyDjF6Bc_WpY8w4RguzzPa_kILGIyEpv5VQ",
   authDomain: "event-photos-beige.firebaseapp.com",
   projectId: "event-photos-beige",
-  storageBucket: "event-photos-benpm install firebase
-ige.firebasestorage.app",
+  storageBucket: "event-photos-beige.firebasestorage.app",
   messagingSenderId: "1077793789573",
   appId: "1:1077793789573:web:864d6ecfc006af728e7bec"
 };
 
 const app = initializeApp(firebaseConfig);
 
-initializeAppCheck(app, {
+const appCheck = initializeAppCheck(app, {
   provider: new ReCaptchaV3Provider("SITE_KEY"),
   isTokenAutoRefreshEnabled: true
 });
