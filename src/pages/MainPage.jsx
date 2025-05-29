@@ -46,26 +46,33 @@ function MainPage() {
       />
 
       <div className="usti-container">
-  <div className="usti-left">
-    <img src="/usti.png" alt="Usti" className="usti-redactor" />
-    <span className="usti-sub">Usturoi – redactor șef</span>
-  </div>
-  <div className="usti-text">
-    <strong className="usti-title">Mesaj de încurajare</strong> 
-    Hei! Sunt Usturoi 🐶. Nu vă sfiiți, zâmbiți larg 😄 și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil ✨! 🎉
-  </div>
-</div>
-{/* Mini articol cu imagine */}
-<div className="mini-articol">
-  <img
-    src="/numele-pozei.png"
-    alt="Articol special"
-    className="titlu-mare"
-  />
-  <p className="mini-articol-text">
-    O poză face cât o mie de cuvinte. Ne bucurăm că sunteți parte din povestea noastră!
-  </p>
-</div>
+        <div className="usti-left">
+          <img src="/usti.png" alt="Usti" className="usti-redactor" />
+          <span className="usti-sub">Usturoi – redactor șef</span>
+        </div>
+        <div className="usti-text">
+          <strong className="usti-title">Mesaj de încurajare</strong>{" "}
+          Hei! Sunt Usturoi 🐶. Nu vă sfiiți, zâmbiți larg 😄 și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil ✨! 🎉
+        </div>
+      </div>
+
+      {/* Mini articol cu prima imagine */}
+      <div className="mini-articol">
+        <img
+          src="/numele-pozei.png"
+          alt="Articol special"
+          className="titlu-mare"
+        />
+      </div>
+
+      {/* Mini articol cu poza de la miri */}
+      <div className="mini-articol">
+        <img
+          src="/poza-de-la-miri.png"
+          alt="Poza de la miri"
+          className="titlu-mare"
+        />
+      </div>
 
       <div className="butoane">
         <img
