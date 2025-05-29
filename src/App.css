@@ -201,16 +201,22 @@ body, html {
 }
 @media (max-width: 480px) {
   .usti-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: nowrap;
   }
 
-  .usti-text-wrapper {
-    align-items: center;
+  .usti-redactor {
+    width: 90px;
   }
 
-  .usti-info {
-    align-items: center;
+  .usti-text {
+    font-size: 0.9rem;
+  }
+
+  .usti-sub {
+    font-size: 0.7rem;
   }
 }
+
