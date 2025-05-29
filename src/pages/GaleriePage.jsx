@@ -73,9 +73,10 @@ const GaleriePage = () => {
 />
       </div>
 
-      <div className="back-wrapper">
-  <a href="/" className="buton-inapoi">&#8592; Înapoi</a>
-</div>
+      <a href="/" className="buton-inapoi">
+  <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
+</a>
+
 
 
       <div className="grid">
