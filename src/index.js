@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import "./firebase-appcheck"; // 👈 asigură că App Check se inițializează o singură dată
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'; // 👉 adaugă această linie
@@ -13,6 +14,6 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
-import "./firebase-appcheck"; // 👈 asigură că App Check se inițializează o singură dată
+
 
 reportWebVitals();
