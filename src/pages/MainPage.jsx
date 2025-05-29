@@ -1,35 +1,43 @@
-import React, { useState, useRef } from "react";
-import { ref, uploadBytes } from "firebase/storage";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { storage, db } from "../firebase";
-import { v4 as uuid } from "uuid";
+import React, { useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 
 function MainPage() {
   const [confirmare, setConfirmare] = useState("");
-  const fileInputRef = useRef();
   const navigate = useNavigate();
 
   const handleDirectUpload = () => {
-    fileInputRef.current.click();
-  };
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
 
-  const handleFileChange = async (e) => {
-    const selectedFile = e.target.files[0];
-    if (!selectedFile) return;
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
 
-    const path = `galerie/${uuid()}-${selectedFile.name}`;
-    const fileRef = ref(storage, path);
-    await uploadBytes(fileRef, selectedFile);
-    await addDoc(collection(db, "galerie"), {
-      path,
-      nume,
-      timestamp: Timestamp.now(),
-    });
+      import("firebase/storage").then(({ getStorage, ref, uploadBytes }) => {
+        import("../firebase").then(({ storage, db }) => {
+          import("firebase/firestore").then(({ collection, addDoc, Timestamp }) => {
+            import("uuid").then(({ v4: uuid }) => {
+              const path = `galerie/${uuid()}-${file.name}`;
+              const fileRef = ref(storage, path);
+              uploadBytes(fileRef, file).then(() => {
+                addDoc(collection(db, "galerie"), {
+                  path,
+                  nume: "", // Fără nume, conform cerinței
+                  timestamp: Timestamp.now(),
+                }).then(() => {
+                  setConfirmare("Poza a fost încărcată în galerie!");
+                  setTimeout(() => setConfirmare(""), 3000);
+                });
+              });
+            });
+          });
+        });
+      });
+    };
 
-    setConfirmare("Poza a fost încărcată în galerie!");
-    setTimeout(() => setConfirmare(""), 3000);
+    input.click();
   };
 
   return (
@@ -52,18 +60,10 @@ function MainPage() {
         <img
           src="/vizualizeaza-galeria.png"
           alt="Vizualizează galeria"
-          className="buton"
+          className="buton-vintage"
           onClick={() => navigate("/galerie")}
         />
       </div>
-
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-      />
 
       {confirmare && <p className="confirmare">{confirmare}</p>}
     </div>
