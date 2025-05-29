@@ -225,6 +225,22 @@ body {
   opacity: 0.4;
 }
 
+.mesaj-textarea {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 15px;
+  font-size: 1rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.6;
+  border: 1px solid #999;
+  border-radius: 6px;
+  resize: vertical;
+  display: block;
+  background-color: #fdfdfd;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 480px) {
   .usti-container {
     flex-direction: row;

@@ -3,51 +3,80 @@ import { ref, uploadBytes } from "firebase/storage";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { storage, db } from "../firebase";
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function MesajeSecrete() {
-  const [file, setFile] = useState(null);
   const [mesaj, setMesaj] = useState("");
+  const [file, setFile] = useState(null);
   const [confirmare, setConfirmare] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    if (!file && mesaj.trim() === "") return;
-
-    const path = file ? `mesaje/${uuid()}-${file.name}` : null;
+  const handleUpload = async () => {
+    let path = null;
     if (file) {
+      path = `mesaje/${uuid()}-${file.name}`;
       const fileRef = ref(storage, path);
       await uploadBytes(fileRef, file);
     }
 
     await addDoc(collection(db, "mesaje"), {
-      path,
       mesaj,
+      path,
       timestamp: Timestamp.now(),
     });
 
-    setFile(null);
     setMesaj("");
-    setConfirmare("Mesajul tău a fost trimis!");
+    setFile(null);
+    setConfirmare("Mesajul a fost trimis cu succes!");
     setTimeout(() => setConfirmare(""), 3000);
   };
 
   return (
     <div className="container">
-      <h2>Trimite un mesaj pentru miri 🥰</h2>
-      <div className="form">
-        <textarea
-          placeholder="Scrie un mesaj..."
-          value={mesaj}
-          onChange={(e) => setMesaj(e.target.value)}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <button onClick={handleSubmit}>Trimite</button>
-        {confirmare && <p className="confirmare">{confirmare}</p>}
+      <img
+        src="/titlu-mare.png"
+        alt="Gazeta Căsătoriilor"
+        className="titlu-mare"
+      />
+
+      <div className="back-wrapper">
+        <span className="buton-inapoi" onClick={() => navigate("/")}>
+          ← Înapoi
+        </span>
       </div>
+
+      <textarea
+        className="mesaj-textarea"
+        rows="6"
+        placeholder="Scrie un mesaj pentru miri..."
+        value={mesaj}
+        onChange={(e) => setMesaj(e.target.value)}
+      ></textarea>
+
+      <label htmlFor="upload-file">
+        <img
+          src="/adauga-foto-video.png"
+          alt="Adaugă poză/video"
+          className="buton-vintage"
+        />
+      </label>
+      <input
+        id="upload-file"
+        type="file"
+        accept="image/*,video/*"
+        style={{ display: "none" }}
+        onChange={(e) => setFile(e.target.files[0])}
+      />
+
+      <img
+        src="/trimite-mesaj.png"
+        alt="Trimite"
+        className="buton-vintage"
+        onClick={handleUpload}
+      />
+
+      {confirmare && <p className="confirmare">{confirmare}</p>}
     </div>
   );
 }
