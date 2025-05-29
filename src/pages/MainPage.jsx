@@ -70,6 +70,13 @@ function MainPage() {
           className="buton-vintage"
           onClick={() => navigate("/galerie")}
         />
+        <img
+  src="/mesaj-pentru-miri.png"
+  alt="Mesaj pentru miri"
+  className="buton-vintage"
+  onClick={() => navigate("/mesaj")}
+/>
+
       </div>
 
       {confirmare && <p className="confirmare">{confirmare}</p>}

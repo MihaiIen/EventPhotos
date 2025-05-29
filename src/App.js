@@ -7,13 +7,11 @@ import GaleriePage from "./pages/GaleriePage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/mesaje" element={<MesajeSecrete />} /> {/* Aici trebuie să fie */}
-        <Route path="/galerie" element={<GaleriePage />} />
-      </Routes>
-    </Router>
+    <Routes>
+  <Route path="/" element={<MainPage />} />
+  <Route path="/galerie" element={<GaleriePage />} />
+  <Route path="/mesaj" element={<MesajeSecrete />} />
+</Routes>
   );
 }
 
