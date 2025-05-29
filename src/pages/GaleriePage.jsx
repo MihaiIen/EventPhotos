@@ -116,5 +116,4 @@ const GaleriePage = () => {
     </div>
   );
 };
-
 export default GaleriePage;
