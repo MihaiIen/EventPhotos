@@ -51,8 +51,8 @@ function MainPage() {
     <span className="usti-sub">Usturoi – redactor șef</span>
   </div>
   <div className="usti-text">
-    <strong className="usti-title">Mesaj de încurajare</strong> 🙂📸<br />
-    Hei! Sunt Usturoi. Nu vă sfiiți, zâmbiți larg și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil! 🎉
+    <strong className="usti-title">Mesaj de încurajare</strong> 
+    Hei! Sunt Usturoi 🐶. Nu vă sfiiți, zâmbiți larg 😄 și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil ✨! 🎉
   </div>
 </div>
       <div className="butoane">
