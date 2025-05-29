@@ -155,3 +155,9 @@ body, html {
   display: block;
   margin: 20px auto;
 }
+.titlu-mare {
+  width: calc(100% - 20px); /* 10px margini laterale */
+  max-width: 1000px;        /* limitează pe desktop */
+  margin: 0 auto;
+  display: block;
+}
