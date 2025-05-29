@@ -26,14 +26,14 @@ body, html {
 /* Usti și text */
 .usti-container {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 15px;
   margin: 20px 10px;
-  padding: 0 10px;
-  flex-wrap: wrap;
-  text-align: left;
+  flex-wrap: nowrap; /* 👉 nu mai permite să treacă dedesubt */
 }
+
 
 .usti-info {
   display: flex;
@@ -42,23 +42,30 @@ body, html {
 }
 
 .usti {
-  width: 120px; /* redus la jumătate */
+  width: 120px;
   height: auto;
 }
 
 .credit-foto {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  font-style: italic;
   margin-top: 4px;
-  font-family: 'Georgia', serif;
-  color: #555;
   margin-left: 2px;
+}
+
+.usti-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 0;
+  flex: 1; /* 👉 ocupă tot spațiul disponibil în dreapta */
 }
 
 .titlu-articol {
   font-size: 1.1rem;
   font-weight: bold;
   font-family: 'Georgia', serif;
-  margin: 0; /* elimină spațiu jos */
+  margin: 0;
   padding: 0;
 }
 
@@ -67,8 +74,9 @@ body, html {
   line-height: 1.5;
   font-family: 'Georgia', 'Times New Roman', serif;
   margin: 0;
-  padding-top: 4px; /* mic spațiu controlat */
+  padding-top: 4px;
 }
+
 
 
 /* Butoane */
@@ -190,4 +198,19 @@ body, html {
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 0; /* elimină spațiu */
+}
+@media (max-width: 480px) {
+  .usti-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .usti-text-wrapper {
+    align-items: center;
+  }
+
+  .usti-info {
+    align-items: center;
+  }
 }

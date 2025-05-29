@@ -48,17 +48,17 @@ function MainPage() {
       <div className="usti-container">
   <div className="usti-info">
     <img src="/usti.png" alt="Usti" className="usti" />
-    <p className="credit-foto">Usturoi – redactor șef</p>
+    <span className="credit-foto">Usturoi – redactor șef</span>
   </div>
 
-  <div className="usti-text">
-    <h3 className="titlu-articol">Mesaj de încurajare</h3>
-    <p>
-      Hei! Sunt Usturoi 🐾. Nu vă sfiiți, zâmbiți larg și încărcați cele mai
-      haioase poze! 😄 Eu le analizez cu atenție de acasă și dau note la stil! 🕵️‍♂️
+  <div className="usti-text-wrapper">
+    <p className="titlu-articol">Mesaj de încurajare</p>
+    <p className="usti-text">
+      Hei! Sunt Usturoi 🐶. Nu vă sfiiți, zâmbiți larg 😄 și încărcați cele mai haioase poze! Eu le analizez cu atenție de acasă și dau note la stil ✨!
     </p>
   </div>
 </div>
+
 
 
       <div className="butoane">
