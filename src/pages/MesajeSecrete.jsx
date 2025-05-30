@@ -60,6 +60,7 @@ export default function MesajeSecrete() {
   return (
     <div className="container">
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
+      <div className="linie-subtila" />
       <a href="/" className="buton-inapoi">
         <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
       </a>
