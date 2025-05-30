@@ -89,20 +89,6 @@ function MainPage() {
           className="buton-vintage"
           onClick={() => navigate("/mesaj")}
         />
-
-        <div style={{ position: "absolute", bottom: 10, left: 10 }}>
-          <a
-            href="/vizualizare-mesaje"
-            style={{
-              fontSize: "0.9rem",
-              color: "#333",
-              textDecoration: "underline",
-              opacity: 0.7,
-            }}
-          >
-            Mesaje miri 🔒
-          </a>
-        </div>
       </div>
     </div>
   );
