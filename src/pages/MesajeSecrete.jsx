@@ -59,7 +59,7 @@ export default function MesajeSecrete() {
     <div className="container">
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
 
-      <div style={{ textAlign: "left", marginLeft: 20 }}>
+      <div style={{ position: "absolute", top: 20, left: 10 }}>
         <a href="/" className="buton-inapoi">
           <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
         </a>
@@ -76,7 +76,7 @@ export default function MesajeSecrete() {
           placeholder="Mesajul tău..."
           value={mesaj}
           onChange={(e) => setMesaj(e.target.value)}
-          rows={4}
+          rows={8}
           style={{ display: "block", width: "100%", marginBottom: 10 }}
         />
 
