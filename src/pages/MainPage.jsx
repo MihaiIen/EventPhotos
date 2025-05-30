@@ -76,6 +76,9 @@ function MainPage() {
   className="buton-vintage"
   onClick={() => navigate("/mesaj")}
 />
+<a href="/admin-mesaje" style={{ position: "absolute", bottom: 10, left: 10, fontSize: "0.8rem", opacity: 0.4 }}>
+  Mesaje miri 🔒
+</a>
 
       </div>
 
