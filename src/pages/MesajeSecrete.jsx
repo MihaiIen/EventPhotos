@@ -1,45 +1,68 @@
 import { useState } from "react";
 import supabase from "../supabaseClient";
-import { UploadButton } from "@uploadthing/react";
 
 export default function MesajeSecrete() {
-  const [mesaj, setMesaj] = useState("");
   const [autor, setAutor] = useState("");
-  const [fileUrl, setFileUrl] = useState("");
+  const [mesaj, setMesaj] = useState("");
+  const [fisier, setFisier] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (!mesaj) return alert("Scrie un mesaj :)");
+    setLoading(true);
 
-    const { error } = await supabase.from("mesaje").insert([
+    let fileUrl = null;
+
+    if (fisier) {
+      const fileExt = fisier.name.split(".").pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("mesaje")
+        .upload(fileName, fisier);
+
+      if (uploadError) {
+        alert("Eroare la upload fisier!");
+        setLoading(false);
+        return;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from("mesaje")
+        .getPublicUrl(fileName);
+
+      fileUrl = publicUrlData.publicUrl;
+    }
+
+    const { error: insertError } = await supabase.from("mesaje").insert([
       {
-        mesaj,
         autor: autor || null,
-        link_fisier: fileUrl || null,
+        mesaj,
+        link_fisier: fileUrl,
       },
     ]);
 
-    if (error) {
-      console.error(error);
-      alert("Eroare la trimitere!");
+    if (insertError) {
+      alert("Eroare la trimitere mesaj.");
     } else {
-      alert("Mesajul a fost trimis!");
-      setMesaj("");
+      alert("Mesaj trimis!");
       setAutor("");
-      setFileUrl("");
+      setMesaj("");
+      setFisier(null);
     }
+
+    setLoading(false);
   };
 
   return (
     <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
       <h2>Scrie un mesaj pentru miri 💌</h2>
-
       <input
         placeholder="Numele tău (opțional)"
         value={autor}
         onChange={(e) => setAutor(e.target.value)}
         style={{ display: "block", width: "100%", marginBottom: 10 }}
       />
-
       <textarea
         placeholder="Mesajul tău..."
         value={mesaj}
@@ -47,25 +70,14 @@ export default function MesajeSecrete() {
         rows={4}
         style={{ display: "block", width: "100%", marginBottom: 10 }}
       />
-
-      <UploadButton
-        endpoint="mesaj" // <- acesta trebuie să existe în dashboard UploadThing
-        onClientUploadComplete={(res) => {
-          const url = res?.[0]?.url;
-          if (url) {
-            setFileUrl(url);
-            console.log("Upload complet:", url);
-          }
-        }}
-        onUploadError={(error) => {
-          alert("Eroare la upload: " + error.message);
-        }}
+      <input
+        type="file"
+        accept="image/*,video/*"
+        onChange={(e) => setFisier(e.target.files[0])}
+        style={{ marginBottom: 10 }}
       />
-
-      {fileUrl && <p>Fișier încărcat ✅</p>}
-
-      <button onClick={handleSubmit} style={{ marginTop: 20 }}>
-        Trimite
+      <button onClick={handleSubmit} disabled={loading}>
+        {loading ? "Se trimite..." : "Trimite"}
       </button>
     </div>
   );
