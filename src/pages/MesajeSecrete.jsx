@@ -60,13 +60,9 @@ export default function MesajeSecrete() {
   return (
     <div className="container">
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
-      <div className="linie-subtila" />
-      <img
-        src="/vezi-galeria-mare.png"
-        alt="Înapoi"
-        className="buton-vintage"
-        onClick={() => navigate("/")}
-      />
+      <a href="/" className="buton-inapoi">
+        <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
+      </a>
 
       <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
         <input
