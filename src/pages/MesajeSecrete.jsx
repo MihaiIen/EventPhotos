@@ -1,16 +1,14 @@
 import { useState } from "react";
 import supabase from "../supabaseClient";
-import "../App.css";
 import { useNavigate } from "react-router-dom";
-
+import "../App.css";
 
 export default function MesajeSecrete() {
   const [autor, setAutor] = useState("");
   const [mesaj, setMesaj] = useState("");
   const [fisier, setFisier] = useState(null);
   const [loading, setLoading] = useState(false);
-const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!mesaj) return alert("Scrie un mesaj :)");
@@ -22,7 +20,7 @@ const navigate = useNavigate();
       const fileExt = fisier.name.split(".").pop();
       const fileName = `${Date.now()}.${fileExt}`;
 
-      const { error: uploadError } = await supabase.storage
+      const { data, error: uploadError } = await supabase.storage
         .from("mesaje")
         .upload(fileName, fisier);
 
@@ -63,24 +61,24 @@ const navigate = useNavigate();
     <div className="container">
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
 
+      <div style={{ margin: "10px 0 20px 10px", textAlign: "left" }}>
         <img
-  src="/mergi-inapoi.png"
-  alt="Mergi înapoi"
-  onClick={() => navigate("/")}
-  style={{
-    height: "32px", // ca să fie mic
-    cursor: "pointer",
-    marginLeft: "10px",
-    marginTop: "10px",
-    transition: "transform 0.2s ease",
-  }}
-  onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-  onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-/>
-
-
+          src="/mergi-inapoi.png"
+          alt="Mergi înapoi"
+          onClick={() => navigate("/")}
+          style={{
+            height: "32px",
+            cursor: "pointer",
+            marginLeft: "10px",
+            transition: "transform 0.2s ease",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+        />
+      </div>
 
       <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
+        <h2>Scrie un mesaj pentru miri 💌</h2>
         <input
           placeholder="Numele tău (opțional)"
           value={autor}
@@ -91,32 +89,33 @@ const navigate = useNavigate();
           placeholder="Mesajul tău..."
           value={mesaj}
           onChange={(e) => setMesaj(e.target.value)}
-          rows={8}
+          rows={6}
           style={{ display: "block", width: "100%", marginBottom: 10 }}
         />
-
-        <label htmlFor="upload-mesaj">
+        <label htmlFor="upload-file">
           <img
             src="/adauga-poza-mare.png"
-            alt="Alege fișier"
+            alt="Adaugă poză"
             className="buton-vintage"
+            style={{ maxWidth: "100%", marginBottom: 10 }}
           />
         </label>
         <input
-          id="upload-mesaj"
+          id="upload-file"
           type="file"
           accept="image/*,video/*"
-          onChange={(e) => setFisier(e.target.files[0])}
           style={{ display: "none" }}
+          onChange={(e) => setFisier(e.target.files[0])}
         />
-
-        <img
-          src="/trimite-mesaj.png"
-          alt="Trimite"
-          className="buton-vintage"
-          onClick={handleSubmit}
-          style={{ marginTop: 20, opacity: loading ? 0.6 : 1, pointerEvents: loading ? "none" : "auto" }}
-        />
+        <div style={{ textAlign: "center" }}>
+          <img
+            src="/trimite-mesaj.png"
+            alt="Trimite"
+            className="buton-vintage"
+            onClick={handleSubmit}
+            style={{ maxWidth: "100%", marginTop: 10, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.6 : 1 }}
+          />
+        </div>
       </div>
     </div>
   );
