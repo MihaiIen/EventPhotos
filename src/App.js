@@ -3,6 +3,9 @@ import MainPage from "./pages/MainPage";
 import MesajeSecrete from "./pages/MesajeSecrete";
 import GaleriePage from "./pages/GaleriePage";
 import VizualizareMesaje from "./pages/VizualizareMesaje";
+import AdminGalerie from "./pages/AdminGalerie";
+
+
 
 
 function App() {
@@ -12,6 +15,7 @@ function App() {
       <Route path="/galerie" element={<GaleriePage />} />
       <Route path="/mesaj" element={<MesajeSecrete />} />
       <Route path="/vizualizare-mesaje" element={<VizualizareMesaje />} />
+      <Route path="/admin-galerie" element={<AdminGalerie />} />
     </Routes>
   );
 }
