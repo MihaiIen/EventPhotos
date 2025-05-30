@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
+import "../App.css";
 
 export default function MesajeSecrete() {
   const [autor, setAutor] = useState("");
   const [mesaj, setMesaj] = useState("");
   const [fisier, setFisier] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!mesaj) return alert("Scrie un mesaj :)");
@@ -28,12 +31,10 @@ export default function MesajeSecrete() {
       }
 
       const { data: publicUrlData } = supabase.storage
-  .from("mesaje")
-  .getPublicUrl(fileName);
+        .from("mesaje")
+        .getPublicUrl(fileName);
 
-fileUrl = publicUrlData.publicUrl;
-console.log("URL fisier:", fileUrl); // <- vezi aici dacă apare
-
+      fileUrl = publicUrlData.publicUrl;
     }
 
     const { error: insertError } = await supabase.from("mesaje").insert([
@@ -57,30 +58,54 @@ console.log("URL fisier:", fileUrl); // <- vezi aici dacă apare
   };
 
   return (
-    <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
-      <h2>Scrie un mesaj pentru miri 💌</h2>
-      <input
-        placeholder="Numele tău (opțional)"
-        value={autor}
-        onChange={(e) => setAutor(e.target.value)}
-        style={{ display: "block", width: "100%", marginBottom: 10 }}
+    <div className="container">
+      <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
+      <div className="linie-subtila" />
+      <img
+        src="/vezi-galeria-mare.png"
+        alt="Înapoi"
+        className="buton-vintage"
+        onClick={() => navigate("/")}
       />
-      <textarea
-        placeholder="Mesajul tău..."
-        value={mesaj}
-        onChange={(e) => setMesaj(e.target.value)}
-        rows={4}
-        style={{ display: "block", width: "100%", marginBottom: 10 }}
-      />
-      <input
-        type="file"
-        accept="image/*,video/*"
-        onChange={(e) => setFisier(e.target.files[0])}
-        style={{ marginBottom: 10 }}
-      />
-      <button onClick={handleSubmit} disabled={loading}>
-        {loading ? "Se trimite..." : "Trimite"}
-      </button>
+
+      <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
+        <input
+          placeholder="Numele tău (opțional)"
+          value={autor}
+          onChange={(e) => setAutor(e.target.value)}
+          style={{ display: "block", width: "100%", marginBottom: 10 }}
+        />
+        <textarea
+          placeholder="Mesajul tău..."
+          value={mesaj}
+          onChange={(e) => setMesaj(e.target.value)}
+          rows={4}
+          style={{ display: "block", width: "100%", marginBottom: 10 }}
+        />
+
+        <label htmlFor="upload-mesaj">
+          <img
+            src="/adauga-poza-mare.png"
+            alt="Alege fișier"
+            className="buton-vintage"
+          />
+        </label>
+        <input
+          id="upload-mesaj"
+          type="file"
+          accept="image/*,video/*"
+          onChange={(e) => setFisier(e.target.files[0])}
+          style={{ display: "none" }}
+        />
+
+        <img
+          src="/trimite-mesaj.png"
+          alt="Trimite"
+          className="buton-vintage"
+          onClick={handleSubmit}
+          style={{ marginTop: 20, opacity: loading ? 0.6 : 1, pointerEvents: loading ? "none" : "auto" }}
+        />
+      </div>
     </div>
   );
 }
