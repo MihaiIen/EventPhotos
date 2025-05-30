@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://event-photos-beige.vercel.app"],
+    "method": ["GET", "POST", "PUT", "DELETE"],
+    "maxAgeSeconds": 3600,
+    "responseHeader": ["Content-Type", "Authorization", "x-goog-upload-protocol", "x-goog-upload-header-content-length"]
+  }
+]
