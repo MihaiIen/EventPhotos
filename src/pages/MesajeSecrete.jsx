@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
 import "../App.css";
 
@@ -8,7 +7,6 @@ export default function MesajeSecrete() {
   const [mesaj, setMesaj] = useState("");
   const [fisier, setFisier] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!mesaj) return alert("Scrie un mesaj :)");
