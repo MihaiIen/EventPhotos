@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function MainPage() {
-  //const [confirmare, setConfirmare] = useState("");
+  const [confirmare, setConfirmare] = useState("");
   const navigate = useNavigate();
 
   const handleUpload = async (e) => {
