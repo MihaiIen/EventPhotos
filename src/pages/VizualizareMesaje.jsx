@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
 import "../App.css";
 
 export default function VizualizareMesaje() {
   const [mesaje, setMesaje] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMesaje = async () => {
