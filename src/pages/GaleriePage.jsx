@@ -72,8 +72,16 @@ const GaleriePage = () => {
       </div>
 
       <a href="/" className="buton-inapoi">
-        <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
-      </a>
+  <img
+    src="/MERGI INAPOI.png"
+    alt="Mergi înapoi"
+    style={{
+      height: "40px", // ajustabil în funcție de cât de mare era textul
+      verticalAlign: "middle"
+    }}
+  />
+</a>
+
 
       <div className="grid">
         {mediaList.map((url, index) => (
