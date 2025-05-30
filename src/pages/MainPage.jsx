@@ -36,8 +36,7 @@ function MainPage() {
     if (dbError) {
       alert("Eroare la salvarea în galerie.");
     } else {
-      setConfirmare("Poza a fost încărcată în galerie!");
-      setTimeout(() => setConfirmare(""), 3000);
+      alert("Poza a fost încărcată în galerie!");
     }
   };
 
