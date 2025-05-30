@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import { app } from "../firebase";
+import supabase from "../supabaseClient";
 import "../GaleriePage.css";
 
 const GaleriePage = () => {
@@ -11,13 +10,16 @@ const GaleriePage = () => {
 
   useEffect(() => {
     const fetchMedia = async () => {
-      const storage = getStorage(app);
-      const listRef = ref(storage, "galerie/");
-      const result = await listAll(listRef);
-      const urls = await Promise.all(
-        result.items.map((itemRef) => getDownloadURL(itemRef))
-      );
-      setMediaList(urls);
+      const { data, error } = await supabase
+        .from("galerie")
+        .select("url")
+        .order("created_at", { ascending: false });
+
+      if (!error && data) {
+        setMediaList(data.map((item) => item.url));
+      } else {
+        console.error("Eroare la încărcarea galeriei:", error);
+      }
     };
 
     fetchMedia();
@@ -66,18 +68,12 @@ const GaleriePage = () => {
   return (
     <div className="galerie-container">
       <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <img
-  src="/titlu-mare.png"
-  alt="Gazeta Căsătoriilor"
-  className="titlu-mare"
-/>
+        <img src="/titlu-mare.png" alt="Gazeta Căsătoriilor" className="titlu-mare" />
       </div>
 
       <a href="/" className="buton-inapoi">
-  <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
-</a>
-
-
+        <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
+      </a>
 
       <div className="grid">
         {mediaList.map((url, index) => (
@@ -100,10 +96,15 @@ const GaleriePage = () => {
         >
           <span className="modal-close" onClick={closePreview}>×</span>
 
-          <span className="arrow left" onClick={(e) => {
-            e.stopPropagation();
-            showPrevious();
-          }}>‹</span>
+          <span
+            className="arrow left"
+            onClick={(e) => {
+              e.stopPropagation();
+              showPrevious();
+            }}
+          >
+            ‹
+          </span>
 
           {isVideo ? (
             <video src={previewUrl} controls autoPlay />
@@ -111,13 +112,19 @@ const GaleriePage = () => {
             <img src={previewUrl} alt="Preview" />
           )}
 
-          <span className="arrow right" onClick={(e) => {
-            e.stopPropagation();
-            showNext();
-          }}>›</span>
+          <span
+            className="arrow right"
+            onClick={(e) => {
+              e.stopPropagation();
+              showNext();
+            }}
+          >
+            ›
+          </span>
         </div>
       )}
     </div>
   );
 };
+
 export default GaleriePage;
