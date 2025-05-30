@@ -20,7 +20,7 @@ export default function MesajeSecrete() {
       const fileExt = fisier.name.split(".").pop();
       const fileName = `${Date.now()}.${fileExt}`;
 
-      const { data, error: uploadError } = await supabase.storage
+      const {  error: uploadError } = await supabase.storage
         .from("mesaje")
         .upload(fileName, fisier);
 
