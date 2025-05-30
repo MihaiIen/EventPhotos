@@ -28,10 +28,12 @@ export default function MesajeSecrete() {
       }
 
       const { data: publicUrlData } = supabase.storage
-        .from("mesaje")
-        .getPublicUrl(fileName);
+  .from("mesaje")
+  .getPublicUrl(fileName);
 
-      fileUrl = publicUrlData.publicUrl;
+fileUrl = publicUrlData.publicUrl;
+console.log("URL fisier:", fileUrl); // <- vezi aici dacă apare
+
     }
 
     const { error: insertError } = await supabase.from("mesaje").insert([
