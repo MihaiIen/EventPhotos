@@ -64,7 +64,7 @@ const navigate = useNavigate();
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
 
         <img
-  src="/MERGI INAPOI.png"
+  src="/mergi-inapoi.png"
   alt="Mergi înapoi"
   className="buton-vintage"
   onClick={() => navigate("/")}

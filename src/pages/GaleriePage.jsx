@@ -77,7 +77,7 @@ const GaleriePage = () => {
 
       <a href="/" className="buton-inapoi">
   <img
-  src="/MERGI INAPOI.png"
+  src="/mergi-inapoi.png"
   alt="Mergi înapoi"
   className="buton-vintage"
   onClick={() => navigate("/")}
