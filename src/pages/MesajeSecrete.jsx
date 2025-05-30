@@ -1,12 +1,16 @@
 import { useState } from "react";
 import supabase from "../supabaseClient";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
+
 
 export default function MesajeSecrete() {
   const [autor, setAutor] = useState("");
   const [mesaj, setMesaj] = useState("");
   const [fisier, setFisier] = useState(null);
   const [loading, setLoading] = useState(false);
+const navigate = useNavigate();
+
 
   const handleSubmit = async () => {
     if (!mesaj) return alert("Scrie un mesaj :)");
@@ -59,9 +63,19 @@ export default function MesajeSecrete() {
     <div className="container">
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
 
-        <a href="/" className="buton-inapoi">
-          <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
-        </a>
+        <img
+  src="/MERGI INAPOI.png"
+  alt="Mergi înapoi"
+  className="buton-vintage"
+  onClick={() => navigate("/")}
+  style={{
+    height: "40px", // ajustează dacă vrei
+    cursor: "pointer",
+    display: "block",
+    margin: "20px auto 0", // centrat ca restul
+  }}
+/>
+
 
       <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
         <input

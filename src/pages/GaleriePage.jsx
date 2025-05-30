@@ -1,12 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import supabase from "../supabaseClient";
 import "../GaleriePage.css";
+import { useNavigate } from "react-router-dom";
+
 
 const GaleriePage = () => {
   const [mediaList, setMediaList] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
   const [isVideo, setIsVideo] = useState(false);
   const touchStartX = useRef(0);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchMedia = async () => {
@@ -73,13 +77,18 @@ const GaleriePage = () => {
 
       <a href="/" className="buton-inapoi">
   <img
-    src="/mergi-inapoi.png"
-    alt="Mergi înapoi"
-    style={{
-      height: "40px", // ajustabil în funcție de cât de mare era textul
-      verticalAlign: "middle"
-    }}
-  />
+  src="/MERGI INAPOI.png"
+  alt="Mergi înapoi"
+  className="buton-vintage"
+  onClick={() => navigate("/")}
+  style={{
+    height: "40px", // ajustează dacă vrei
+    cursor: "pointer",
+    display: "block",
+    margin: "20px auto 0", // centrat ca restul
+  }}
+/>
+
 </a>
 
 
