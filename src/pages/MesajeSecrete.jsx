@@ -66,15 +66,18 @@ const navigate = useNavigate();
         <img
   src="/mergi-inapoi.png"
   alt="Mergi înapoi"
-  className="buton-vintage"
   onClick={() => navigate("/")}
   style={{
-    height: "40px", // ajustează dacă vrei
+    height: "32px", // ca să fie mic
     cursor: "pointer",
-    display: "block",
-    margin: "20px auto 0", // centrat ca restul
+    marginLeft: "10px",
+    marginTop: "10px",
+    transition: "transform 0.2s ease",
   }}
+  onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+  onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
 />
+
 
 
       <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
