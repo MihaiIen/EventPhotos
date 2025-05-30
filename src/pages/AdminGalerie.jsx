@@ -15,7 +15,7 @@ const AdminGalerie = () => {
   const fetchMedia = async () => {
     const { data, error } = await supabase
       .from("galerie")
-      .select("id, url")
+      .select("id, link_fisier")
       .order("created_at", { ascending: false });
 
     if (!error && data) {
@@ -26,7 +26,7 @@ const AdminGalerie = () => {
   };
 
   const handleDelete = async (item) => {
-    const fileName = item.url.split("/").pop();
+    const fileName = item.link_fisier.split("/").pop();
 
     const { error: deleteStorageError } = await supabase.storage
       .from("galerie")
@@ -47,7 +47,7 @@ const AdminGalerie = () => {
 
   const openPreview = (index) => {
     setCurrentIndex(index);
-    setIsVideo(mediaList[index].url.includes(".mp4"));
+    setIsVideo(mediaList[index].link_fisier.includes(".mp4"));
   };
 
   const closePreview = () => {
@@ -70,7 +70,7 @@ const AdminGalerie = () => {
   const showPrevious = () => {
     setCurrentIndex((prev) => {
       const newIndex = Math.max(0, prev - 1);
-      setIsVideo(mediaList[newIndex].url.includes(".mp4"));
+      setIsVideo(mediaList[newIndex].link_fisier.includes(".mp4"));
       return newIndex;
     });
   };
@@ -78,12 +78,12 @@ const AdminGalerie = () => {
   const showNext = () => {
     setCurrentIndex((prev) => {
       const newIndex = Math.min(mediaList.length - 1, prev + 1);
-      setIsVideo(mediaList[newIndex].url.includes(".mp4"));
+      setIsVideo(mediaList[newIndex].link_fisier.includes(".mp4"));
       return newIndex;
     });
   };
 
-  const previewUrl = currentIndex !== null ? mediaList[currentIndex].url : null;
+  const previewUrl = currentIndex !== null ? mediaList[currentIndex].link_fisier : null;
 
   return (
     <div className="galerie-container">
@@ -98,10 +98,10 @@ const AdminGalerie = () => {
       <div className="grid">
         {mediaList.map((item, index) => (
           <div key={item.id} className="grid-item" onClick={() => openPreview(index)}>
-            {item.url.includes(".mp4") ? (
-              <video src={item.url} muted />
+            {item.link_fisier.includes(".mp4") ? (
+              <video src={item.link_fisier} muted />
             ) : (
-              <img src={item.url} alt={`Media ${index}`} />
+              <img src={item.link_fisier} alt={`Media ${index}`} />
             )}
             <button
               onClick={(e) => {
