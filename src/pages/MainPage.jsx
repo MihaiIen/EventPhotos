@@ -104,8 +104,6 @@ function MainPage() {
           </a>
         </div>
       </div>
-
-      {confirmare && <p className="confirmare">{confirmare}</p>}
     </div>
   );
 }
