@@ -1,13 +1,9 @@
-import React, { useState } from "react";
-import { ref, uploadBytes } from "firebase/storage";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { storage, db } from "../firebase";
-import { v4 as uuid } from "uuid";
-import "../App.css";
+import { useState } from "react";
+import supabase from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 function MainPage() {
-  // const [file, setFile] = useState(null);
   const [confirmare, setConfirmare] = useState("");
   const navigate = useNavigate();
 
@@ -15,39 +11,58 @@ function MainPage() {
     const file = e.target.files[0];
     if (!file) return;
 
-    const path = `galerie/${uuid()}-${file.name}`;
-    const fileRef = ref(storage, path);
-    await uploadBytes(fileRef, file);
-    await addDoc(collection(db, "galerie"), {
-      path,
-      timestamp: Timestamp.now(),
-    });
+    const fileExt = file.name.split(".").pop();
+    const fileName = `galerie-${Date.now()}.${fileExt}`;
 
-    setConfirmare("Poza a fost încărcată în galerie!");
-    setTimeout(() => setConfirmare(""), 3000);
+    const { error: uploadError } = await supabase.storage
+      .from("galerie")
+      .upload(fileName, file);
+
+    if (uploadError) {
+      alert("Eroare la încărcarea fișierului.");
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("galerie")
+      .getPublicUrl(fileName);
+
+    const fileUrl = urlData?.publicUrl;
+
+    const { error: dbError } = await supabase
+      .from("galerie")
+      .insert([{ link_fisier: fileUrl }]);
+
+    if (dbError) {
+      alert("Eroare la salvarea în galerie.");
+    } else {
+      setConfirmare("Poza a fost încărcată în galerie!");
+      setTimeout(() => setConfirmare(""), 3000);
+    }
   };
 
   return (
     <div className="container">
       <img
-  src="/titlu-mare.png"
-  alt="Gazeta Căsătoriilor"
-  className="titlu-mare"
-/>
+        src="/titlu-mare.png"
+        alt="Gazeta Căsătoriilor"
+        className="titlu-mare"
+      />
 
-<img
-  src="/numele-pozei.png"
-  alt="Articol intermediar"
-  className="titlu-mare"
-/>
+      <img
+        src="/numele-pozei.png"
+        alt="Articol intermediar"
+        className="titlu-mare"
+      />
 
-<div className="linie-subtila" />
+      <div className="linie-subtila" />
 
-<img
-  src="/poza-de-la-miri.png"
-  alt="Articol special"
-  className="titlu-mare"
-/>
+      <img
+        src="/poza-de-la-miri.png"
+        alt="Articol special"
+        className="titlu-mare"
+      />
+
       <div className="butoane">
         <label htmlFor="upload-file">
           <img
@@ -59,7 +74,7 @@ function MainPage() {
         <input
           id="upload-file"
           type="file"
-          accept="image/*"
+          accept="image/*,video/*"
           style={{ display: "none" }}
           onChange={handleUpload}
         />
@@ -71,26 +86,25 @@ function MainPage() {
           onClick={() => navigate("/galerie")}
         />
         <img
-  src="/mesaj-pentru-miri.png"
-  alt="Mesaj pentru miri"
-  className="buton-vintage"
-  onClick={() => navigate("/mesaj")}
-/>
-<div style={{ position: "absolute", bottom: 10, left: 10 }}>
-  <a
-    href="/vizualizare-mesaje"
-    style={{
-      fontSize: "0.9rem",
-      color: "#333",
-      textDecoration: "underline",
-      opacity: 0.7,
-    }}
-  >
-    Mesaje miri 🔒
-  </a>
-</div>
+          src="/mesaj-pentru-miri.png"
+          alt="Mesaj pentru miri"
+          className="buton-vintage"
+          onClick={() => navigate("/mesaj")}
+        />
 
-
+        <div style={{ position: "absolute", bottom: 10, left: 10 }}>
+          <a
+            href="/vizualizare-mesaje"
+            style={{
+              fontSize: "0.9rem",
+              color: "#333",
+              textDecoration: "underline",
+              opacity: 0.7,
+            }}
+          >
+            Mesaje miri 🔒
+          </a>
+        </div>
       </div>
 
       {confirmare && <p className="confirmare">{confirmare}</p>}
