@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
 import "../App.css";
 
@@ -7,6 +8,7 @@ export default function MesajeSecrete() {
   const [mesaj, setMesaj] = useState("");
   const [fisier, setFisier] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!mesaj) return alert("Scrie un mesaj :)");
@@ -58,10 +60,12 @@ export default function MesajeSecrete() {
   return (
     <div className="container">
       <img src="/titlu-mare.png" alt="Titlu" className="titlu-mare" />
-      <div className="linie-subtila" />
-      <a href="/" className="buton-inapoi">
-        <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
-      </a>
+
+      <div style={{ textAlign: "left", marginLeft: 20 }}>
+        <a href="/" className="buton-inapoi">
+          <span style={{ fontSize: "1.4rem" }}>←</span> Înapoi
+        </a>
+      </div>
 
       <div style={{ maxWidth: 500, margin: "auto", padding: 20 }}>
         <input
