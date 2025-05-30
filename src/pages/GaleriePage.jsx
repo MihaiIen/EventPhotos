@@ -12,11 +12,11 @@ const GaleriePage = () => {
     const fetchMedia = async () => {
       const { data, error } = await supabase
         .from("galerie")
-        .select("url")
+        .select("link_fisier")
         .order("created_at", { ascending: false });
 
       if (!error && data) {
-        setMediaList(data.map((item) => item.url));
+        setMediaList(data.map((item) => item.link_fisier));
       } else {
         console.error("Eroare la încărcarea galeriei:", error);
       }
