@@ -73,7 +73,7 @@ const GaleriePage = () => {
 
       <a href="/" className="buton-inapoi">
   <img
-    src="/MERGI INAPOI.png"
+    src="/mergi-inapoi.png"
     alt="Mergi înapoi"
     style={{
       height: "40px", // ajustabil în funcție de cât de mare era textul
